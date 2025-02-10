@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Page Title</title>
+    <title>TTS Training Logs</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css">
@@ -19,11 +19,36 @@
 
         <!-- Title Section -->
         <h1 class="text-center">Taha's TTS Training Logs</h1>
-        <p>[uncentered brief intro]</p>
+        <!-- Intro body -->
+        <p>
+            This page documents the progress in output audio quality of the TTS solutions I’ve been working on, 
+            and how they’ve evolved as I’ve built upon them.
+            This page is purely for educational purposes and for demonstrating the quality of results.
+        </p>
+        <!-- Figure 1 -->
+        <figure class="text-center">
+            <img src="assets/RanniGPT_TTS_pipeline.png" alt="TTS pipeline flowchart" class="img-fluid">
+        </figure>
+        <p>
+            Figure 1 illustrates the idea for the overall “pipeline” to create a state-of-the-art voice cloning solution.
+            The concept was to take a strong Text-to-speech model, which would generate authentic flow, 
+            and pair that with a Speech-to-speech model that could much better copy certain acoustic traits and details in accentuations.
+        </p>
+        <p>
+            When deciding on a voice, I ideally wanted a fictional voice that would make for an interesting example, 
+            and have a good amount of data to train with. I went for Ranni the Witch from Elden Ring, 
+            as she had the largest amount of dialogue in the game (around 250 voice lines which amounted to roughly around ~20 mins of speaking audio).
+        </p>
+        <p>
+            I will say that this was probably quite a difficult first voice to throw at it, and as you will see in the examples below the accent, pronunciations, and timbre are very unique, 
+            and much of the vocab used in the dialogue is old-fashioned. Still, by the end of it we saw some incredible results, and I was very pleased with the overall quality and accuracy that was possible.
+        </p>
+
 
 
 
         <!-- Section 1 -->
+        <!-- the mt-5 class just adds some top spacing for a cleaner look-->
         <h2 class="mt-5">Stage 1: Only RVC Trained</h2>
         <p></p>
 
