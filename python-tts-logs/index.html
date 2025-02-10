@@ -20,10 +20,18 @@
         <!-- Title Section -->
         <h1 class="text-center">Taha's TTS Training Logs</h1>
         <!-- Intro body -->
+        <h3>Abstract</h3>
         <p>
             This page documents the progress in output audio quality of the TTS solutions I’ve been working on, 
             and how they’ve evolved as I’ve built upon them.
             This page is purely for educational purposes and for demonstrating the quality of results.
+        </p>
+        <p>
+            <u>Links:</u>
+            <ul>
+                <li>The project that this powers: <b><a href="https://github.com/TahaDidIt/RanniGPT">RanniGPT</a></b></li>
+                <li>The original training log repo: <a href="https://github.com/TahaDidIt/Python-AI-Voice-Cloning-Log">Python-AI-Voice-Cloning-Log</a></li>
+            </ul>
         </p>
         <!-- Figure 1 -->
         <figure class="text-center">
@@ -34,6 +42,7 @@
             The concept was to take a strong Text-to-speech model, which would generate authentic flow, 
             and pair that with a Speech-to-speech model that could much better copy certain acoustic traits and details in accentuations.
         </p>
+        <h3>Data</h3>
         <p>
             When deciding on a voice, I ideally wanted a fictional voice that would make for an interesting example, 
             and have a good amount of data to train with. I went for Ranni the Witch from Elden Ring, 
@@ -64,10 +73,53 @@
             <tbody>
                 <tr>
                     <td>
+                        <p>Reference audio 153</p>
                         <audio controls>
                             <source src="audio/ref_audio_ranni_audio153.wav" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>XTTS_test_ranni_multiref_zeroshot.wav</p>
+                        <audio controls>
+                            <source src="audio/1-ranni_trained_RVC_with_bad_XTTS_output/XTTS_test_ranni_multiref_zeroshot.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>RVC_ranni1_train_on_XTTS_test.wav</p>
+                        <audio controls>
+                            <source src="audio/1-ranni_trained_RVC_with_bad_XTTS_output/RVC_ranni1_train_on_XTTS_test.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>RVC_ranni2_train_on_XTTS_test.wav</p>
+                        <audio controls>
+                            <source src="audio/1-ranni_trained_RVC_with_bad_XTTS_output/RVC_ranni2_train_on_XTTS_test.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+
                     </td>
                 </tr>
             </tbody>
@@ -93,10 +145,63 @@
             <tbody>
                 <tr>
                     <td>
+                        <p>Reference audio 153</p>
                         <audio controls>
                             <source src="audio/ref_audio_ranni_audio153.wav" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>xtts_temp.wav</p>
+                        <audio controls>
+                            <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/xtts_temp.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>xtts_temp_w_rvc.wav</p>
+                        <audio controls>
+                            <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/xtts_temp_w_rvc.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>xtts_temp2.wav</p>
+                        <audio controls>
+                            <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/xtts_temp2.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>xtts_temp2_w_rvc.wav</p>
+                        <audio controls>
+                            <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/xtts_temp2_w_rvc.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+
                     </td>
                 </tr>
             </tbody>
@@ -122,10 +227,37 @@
             <tbody>
                 <tr>
                     <td>
+                        <p>Reference audio 153</p>
                         <audio controls>
                             <source src="audio/ref_audio_ranni_audio153.wav" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>ranni_seneca_quote_xtts_batched.wav</p>
+                        <audio controls>
+                            <source src="audio/3-batched_ranni_XTTS_w_RVC/ranni_seneca_quote_xtts_batched.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>ranni_seneca_quote_xtts_w_rvc.mp3</p>
+                        <audio controls>
+                            <source src="audio/3-batched_ranni_XTTS_w_RVC/ranni_seneca_quote_xtts_w_rvc.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>
+
                     </td>
                 </tr>
             </tbody>
