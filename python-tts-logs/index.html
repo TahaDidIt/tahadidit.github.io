@@ -22,7 +22,8 @@
         <!-- Intro body -->
         <h3>Abstract</h3>
         <p>
-            This page documents the progress in output audio quality of the TTS solutions I’ve been working on, 
+            This is a page evaluating progress in using and training machine learning models for speech synthesis using Python, in particular for voice cloning.
+            The page documents the output audio quality of the TTS solutions I’ve been working on, 
             and how they’ve evolved as I’ve built upon them.
             This page is purely for educational purposes and for demonstrating the quality of results.
         </p>
@@ -40,7 +41,7 @@
         <p>
             Figure 1 illustrates the idea for the overall “pipeline” to create a state-of-the-art voice cloning solution.
             The concept was to take a strong Text-to-speech model, which would generate authentic flow, 
-            and pair that with a Speech-to-speech model that could much better copy certain acoustic traits and details in accentuations.
+            and pair that with a Speech-to-speech model that could much better copy certain acoustic traits and the fine details and accentuations.
         </p>
         <h3>Data</h3>
         <p>
@@ -59,7 +60,15 @@
         <!-- Section 1 -->
         <!-- the mt-5 class just adds some top spacing for a cleaner look-->
         <h2 class="mt-5">Stage 1: Only RVC Trained</h2>
-        <p></p>
+        <p>
+            We actually started off with training RVC first. Due to the complexities of training XTTS and it requiring some more attention, we tried to use the zero-shot voice cloning feature rather than a full fine-tuned XTTS model.
+        </p>
+        <p>
+            First you can see the reference audio pulled from the game files, needed by XTTS to generate audio (even when trained). This was the reference audio used for most of the generations in the results.
+        </p>
+        <p>
+            The second row is the XTTS generation from a zero-shot cloning attempt using a few reference audios. Row 3 is the trained RVC model on top of this, and row 4 is a second RVC training attempt that was trained for longer, and is what will be used hence forth.
+        </p>
 
         <!-- Section 1 table -->
         <table class="table table-bordered">
@@ -125,13 +134,17 @@
             </tbody>
         </table>
 
-        <p></p>
+        <p>
+            Overall, we can see that the trained RVC model bring significant benefits to the voice accuracy, and it’s clear that it just needs a strong base audio. It’s difficult to distinguish a “winner” between Ranni 1 and 2 RVC models without spending hours comparing dozens of generations, just that they sound slightly “different” acoustically speaking.
+        </p>
 
         
 
         <!-- Section 2 -->
         <h2 class="mt-5">Stage 2: XTTS and RVC Trained</h2>
-        <p></p>
+        <p>
+            The second stage saw the addition of a full trained XTTS model, and was a massive turning point for the accuracy of the voice cloning. Below you can see 2 example generations, temp 1 and temp 2, and each with and without RVC on top. The quality of even just XTTS was a huge surprise. Although not good enough to be “fully immersive” on its own, I was really impressed to see it do so well before any speech-to-speech conversion, especially compared to the zero shot. 
+        </p>
 
         <!-- Section 2 table -->
         <table class="table table-bordered">
@@ -207,7 +220,7 @@
 
                 <tr>
                     <td>
-                        <p>gambling_promt_xtts_w_rvc.wav</p>
+                        <p>gambling_prompt_xtts_w_rvc.wav</p>
                         <audio controls>
                             <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/gambling_promt_xtts_w_rvc.wav" type="audio/wav">
                             Your browser does not support the audio element.
@@ -220,13 +233,23 @@
             </tbody>
         </table>
 
-        <p></p>
+        <p>
+            The bottleneck for quality as we move to the next stage is length of the input text and the audio generation. The speaker’s manner of speech (and thus training data) consists of short sentences and clauses anyways, which will hinder inference quality on larger sentences. But more importantly, XTTS itself reaches its limit for a single inference. This results in either strange pitch and flow behaviour, or flat-out truncated audio (with longer text, the audio does not proceed any further past a certain point, and in rare cases might even miss a clause from the middle of generated sentences).
+        </p>
         
 
 
         <!-- Section 3 -->
         <h2 class="mt-5">Stage 3: XTTS Batched Inference</h2>
-        <p></p>
+        <p>
+            In this stage, we introduced “batched” XTTS inference- performing multiple separate instances of TTS generation and then adding the audios together to get the final output. To achieve this, we had to introduce much more thorough string processing.
+        </p>
+        <p>
+            In previous stages, text to be read was handed to XTTS by a singular string variable which was set in the script directly, and had to be changed manually each time. We first switched this to a list, breaking up the sentences and iterating XTTS inference separately over each sentence in the list. Once XTTS could iteratively infer audio pieces and put them together, we implemented proper, automated text handling. Text is now read from a .txt file rather than being hardcoded into the script, and we use the Regular Expressions library to split input text into sentences upon its punctuation.
+        </p>
+        <p>
+            The benefit of this was that it unlocked reasonably-speaking limitless generation length, without the downside of artifacts or strange behaviours observed from longer audios in the previous stage. Below is the model’s narration of a quote by Seneca, that was 287 characters long (beyond XTTS’s rough limit of 250).
+        </p>
 
         <!-- Section 3 table -->
         <table class="table table-bordered">
@@ -276,7 +299,15 @@
             </tbody>
         </table>
 
-        <p></p>
+        <p>
+            Overall, this creates the most impressive result yet. It’s also noteworthy that since each sentence is from its own separate inference, XTTS is not doing anything to “match-up” the flow from sentence to sentence to make transition seamless. In spite of this, there appears to be some consistent continuity between sentences, which is great to see.
+        </p>
+        <p>
+            Further improvements can take a few directions. Firstly, long sentences have proven to be difficult for XTTS, and especially so for this trained voice model. The Regular Expressions library currently splits text on ellipses, full stops, exclamation and question marks. For text with excessively long sentences, I find myself tweaking text by hand and adding my own punctuation into sentences that get too long. It will be beneficial to improve the text processing further, such as by allowing Regular Expressions to split text on more punctuation such as semi-colons, or in extreme cases commas.
+        </p>
+        <p>
+            Secondly, I’d like to point out the variety of tone. I think that XTTS does an impressive job of keeping sentences from sounding identical and monotonous, considering it only has one short “reference audio” which it uses to generate the flow for all of these sentences. For additional variety however, it is more than likely possible to have multiple reference audios. Prior to generation, XTTS uses the reference audio to compute/generate the speaker’s “conditional latents” and “speaker embedding”. It is likely technically possible to configure the inference such that 2 or 3 reference audios are used to generate 2 or 3 sets of speaker latents/embedding, and have a pre-inference step that judges and assigns which set is more appropriate to use for a given sentence. This would require some experimenting however, and could have detrimental effects on the continuity and flow of the audio if the switching does not sound seamless.
+        </p>
 
     </div>
 </body>
