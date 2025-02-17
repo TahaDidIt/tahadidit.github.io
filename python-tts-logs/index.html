@@ -302,12 +302,24 @@
         <p>
             Overall, this creates the most impressive result yet. It’s also noteworthy that since each sentence is from its own separate inference, XTTS is not doing anything to “match-up” the flow from sentence to sentence to make transition seamless. In spite of this, there appears to be some consistent continuity between sentences, which is great to see.
         </p>
+
+        <!--Further improvements section-->
+        <h2 class="mt-5">Further Improvement Stages</h2>
         <p>
             Further improvements can take a few directions. Firstly, long sentences have proven to be difficult for XTTS, and especially so for this trained voice model. The Regular Expressions library currently splits text on ellipses, full stops, exclamation and question marks. For text with excessively long sentences, I find myself tweaking text by hand and adding my own punctuation into sentences that get too long. It will be beneficial to improve the text processing further, such as by allowing Regular Expressions to split text on more punctuation such as semi-colons, or in extreme cases commas.
         </p>
         <p>
-            Secondly, I’d like to point out the variety of tone. I think that XTTS does an impressive job of keeping sentences from sounding identical and monotonous, considering it only has one short “reference audio” which it uses to generate the flow for all of these sentences. For additional variety however, it is more than likely possible to have multiple reference audios. Prior to generation, XTTS uses the reference audio to compute/generate the speaker’s “conditional latents” and “speaker embedding”. It is likely technically possible to configure the inference such that 2 or 3 reference audios are used to generate 2 or 3 sets of speaker latents/embedding, and have a pre-inference step that judges and assigns which set is more appropriate to use for a given sentence. This would require some experimenting however, and could have detrimental effects on the continuity and flow of the audio if the switching does not sound seamless.
+            Secondly, I’d like to point out the variety of flow and tone. I think that XTTS does an impressive job of keeping sentences from sounding identical and monotonous, considering it only has one short “reference audio” which it uses to generate the flow for all of these sentences. For additional variety however, it is more than likely possible to have multiple reference audios. Prior to generation, XTTS uses the reference audio to compute/generate the speaker’s “conditional latents” and “speaker embedding”. It is likely technically possible to configure the inference such that 2 or 3 reference audios are used to generate 2 or 3 sets of speaker latents/embedding, and have a pre-inference step that judges and assigns which set is more appropriate to use for a given sentence. This would require some experimenting however, and could have detrimental effects on the continuity and flow of the audio if the switching does not sound seamless.
         </p>
+        <p>
+            Of course, it’s worth also revisiting the XTTS training, as we did with RVC in the beginning. By paying closer attention to parameters before training (such as audio length), better training processes, and potentially stitching some audio data together to create longer sentences, we may be able to train up a more capable “version 2” of the finetuned (trained) XTTS model.
+        </p>
+
+
+
+        <!-- Appendix -->
+        <h2 class="mt-5">Appendix</h2>
+        
 
     </div>
 </body>
