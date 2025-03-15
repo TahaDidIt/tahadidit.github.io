@@ -104,7 +104,9 @@ For future improvements:
                         </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            An original piece of speaker audio from the training dataset, used as a reference for the XTTS generations.
+                        </p>
                     </td>
                 </tr>
 
@@ -120,7 +122,9 @@ For future improvements:
                         </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            TTS only. Zero-shot cloning with a few reference audios does not provide anywhere near a usable level of cloning accuracy.
+                        </p>
                     </td>
                 </tr>
 
@@ -136,7 +140,9 @@ For future improvements:
                         </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            Passing the TTS output through the RVC speech-to-speech (S2S) voice conversion. There is a drastic increase in quality, and it manages to handle a surprising number of accentuations/quirks of the speaker’s voice, given the terrible base TTS output it had to work with. This demonstrates the importance of using S2S to further refine TTS generation accuracy.
+                        </p>
                     </td>
                 </tr>
 
@@ -152,7 +158,9 @@ For future improvements:
                         </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            An attempt using a second, longer trained RVC speech to speech model, and the one that will be used from here on out.
+                        </p>
                     </td>
                 </tr>
             </tbody>
@@ -191,6 +199,11 @@ For future improvements:
                             "Each of us was chosen by our own Two Fingers, as a candidate to succeed Queen Marika, to become the new god of the coming age."
                         </i></p>
                     </td>
+                    <td>
+                        <p>
+                            Reference audio
+                        </p>
+                    </td>
                 </tr>
 
                 <tr>
@@ -200,9 +213,14 @@ For future improvements:
                             <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/xtts_temp.wav" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
+                        <p><i>
+                            "It took me quite a long time to develop a voice, and now that I have it, I am not going to be silent."
+                        </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            As usual, first we have the TTS output (XTTS) only. This time, we have an actual trained XTTS model. It gets somewhere in the ballpark of the original speaker voice- respectably on its own without S2S conversion using RVC. It has small amounts of noise, which RVC will smooth out.
+                        </p>
                     </td>
                 </tr>
 
@@ -213,9 +231,14 @@ For future improvements:
                             <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/xtts_temp_w_rvc.wav" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
+                        <p><i>
+                            "It took me quite a long time to develop a voice, and now that I have it, I am not going to be silent."
+                        </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            By combining RVC’s capabilities with a stronger base TTS output this time, we again see a massive jump in voice cloning accuracy, extremely similar to the original. This is a great base quality to build from, and we can now focus on other areas discussed below.
+                        </p>
                     </td>
                 </tr>
 
@@ -226,9 +249,14 @@ For future improvements:
                             <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/xtts_temp2.wav" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
+                        <p><i>
+                            "Ah, a dictionary in Python, much akin to a repository of paired knowledge, doth serve as a mutable collection of key-value pairs. Each key acts as a unique identifier, whilst its corresponding value holds the data associated with it. This structure alloweth for swift retrieval, insertion, or modification of data, provided the key is known. One might envision it as [audio cutoff]”
+                        </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            XTTS-only generation, response by ChatGPT instructed to explain something in speaker’s mannerisms. We see here a point of struggle- longer generations. XTTS reaches its limit and truncates the audio, but even before this point we see the audio start to lose accuracy and sound more like standard text to speech (“retrieval, insertion, or modification”). We also see irregular flow or speeding up of audio.
+                        </p>
                     </td>
                 </tr>
 
@@ -239,9 +267,14 @@ For future improvements:
                             <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/xtts_temp2_w_rvc.wav" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
+                        <p><i>
+                            "Ah, a dictionary in Python, much akin to a repository of paired knowledge, doth serve as a mutable collection of key-value pairs. Each key acts as a unique identifier, whilst its corresponding value holds the data associated with it. This structure alloweth for swift retrieval, insertion, or modification of data, provided the key is known. One might envision it as [audio cutoff]”
+                        </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            Putting this through S2S conversion, RVC makes an impressive attempt at preserving accuracy, and the result is still largely usable. However, since it is just S2S, determining the bulk of the emotional expression and flow is outside the scope of its abilities, and it is not able to fix the fundamental issues in this regard.
+                        </p>
                     </td>
                 </tr>
 
@@ -252,9 +285,16 @@ For future improvements:
                             <source src="audio/2-first_attempt_ranni_trained_XTTS_w_RVC/gambling_promt_xtts_w_rvc.wav" type="audio/wav">
                             Your browser does not support the audio element.
                         </audio>
+                        <p><i>
+                            “Ah, thou does tempt fate with reckless abandon, does thou not? Shall I prepare a eulogy for thy savings now, or later, once the dice hath rolled and fortune laughed in thy face?”
+                        </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            XTTS + RVC. A response to silly prompt asking what it’s thoughts were on spending all your money gambling.
+                        </p>
+                            Similar idea to the previous example, the generation is somewhat long, and the second out of the two sentences causes slightly odd flow, heard at the end as the pitch continuously climbing somewhat unnaturally (“fortune laughed in thy face?”).
+                        </p>
                     </td>
                 </tr>
             </tbody>
@@ -299,6 +339,11 @@ For future improvements:
                             "Each of us was chosen by our own Two Fingers, as a candidate to succeed Queen Marika, to become the new god of the coming age."
                         </i></p>
                     </td>
+                    <td>
+                        <p>
+                            Reference audio
+                        </p>
+                    </td>
                 </tr>
 
                 <tr>
@@ -313,7 +358,11 @@ For future improvements:
                         </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            XTTS only first. We generated TTS from a quote by Senaca. Since each sentence now gets its own separate inference/generation, with them all being concatenated together at the end, we get consistent flow across the generation.
+                        </p>
+                            Interestingly, there appears to be some slightly increased noise in these tests. It could be hardware/memory management settings automatically causing slightly reduced performance. Will require deeper inspection.
+                        </p>
                     </td>
                 </tr>
 
@@ -329,7 +378,9 @@ For future improvements:
                         </i></p>
                     </td>
                     <td>
-
+                        <p>
+                            As expected, RVC elevates the quality of audio further, leading to a great result. A little bit of noise (“the whole [future]”) gets through, but otherwise perfect conversion.
+                        </p>
                     </td>
                 </tr>
             </tbody>
