@@ -31,7 +31,7 @@ For future improvements:
         <!-- Title Section -->
         <h1 class="text-center">Taha's TTS Training Logs</h1>
         <!-- Intro body -->
-        <h3>Abstract</h3>
+        <h2>Abstract</h2>
         <p>
             This is a page evaluating progress in using and training machine learning models for speech synthesis using Python, in particular for voice cloning.
             The page documents the output audio quality of the TTS solutions I’ve been working on, 
@@ -54,18 +54,89 @@ For future improvements:
             The concept was to take a strong Text-to-speech model, which would generate authentic flow, 
             and pair that with a Speech-to-speech model that could much better copy certain acoustic traits and the fine details and accentuations.
         </p>
-        <h3>Data</h3>
+        <h3>Training Data</h3>
         <p>
             When deciding on a voice, I ideally wanted a fictional voice that would make for an interesting example, 
             and have a good amount of data to train with. I went for Ranni the Witch from Elden Ring, 
             as she had the largest amount of dialogue in the game (around 250 voice lines which amounted to roughly around ~20 mins of speaking audio).
         </p>
         <p>
-            I will say that this was probably quite a difficult first voice to throw at it, and as you will see in the examples below: the accent, pronunciations, and timbre are very unique, 
-            and much of the vocab used in the dialogue is old-fashioned. Even still, by the end of it we saw some incredible results, and I was very pleased with the overall quality and accuracy that was possible. 
+            I will say that this was probably quite a difficult first voice to throw at it, and as you will see in the examples below: the accent, pronunciations, and timbre are very unique. 
+            Also, along with the fact that 20 minutes of audio isn't a lot of data, much of the vocab used in the dialogue is old-fashioned and doesn't do well to represent the words that we'll be getting the model to read in the modern day. Even still, by the end of it we saw some incredible results, and I was very pleased with the overall quality and accuracy that was possible. 
             The fact that it coped as well as it did for such a boundary-case also makes me very optimistic about training with more typical or “conventional” datasets.
         </p>
 
+        <h2>TLDR</h2>
+        <p><b>Here is a very quick summary of the results.</b></p>
+        <p>Below are 3 audios: first we have an original audio from the training data, then we have the very first generation we got, followed by a "latest" output that represents the current state of audio generation</p>
+
+        <!-- TDLR table -->
+         <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Audio</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+
+            <tr>
+                <td>
+                    <p>Reference audio 153</p>
+                    <audio controls>
+                        <source src="audio/ref_audio_ranni_audio153.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p><i>
+                        "Each of us was chosen by our own Two Fingers, as a candidate to succeed Queen Marika, to become the new god of the coming age."
+                    </i></p>
+                </td>
+                <td>
+                    <p>
+                        This is an audio from the training data used as a reference audio for TTS generation
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>XTTS_test_ranni_multiref_zeroshot.wav</p>
+                    <audio controls>
+                        <source src="audio/1-ranni_trained_RVC_with_bad_XTTS_output/XTTS_test_ranni_multiref_zeroshot.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p><i>
+                        "It took me quite a long time to develop a voice, and now that I have it, I am not going to be silent."
+                    </i></p>
+                </td>
+                <td>
+                    <p>
+                        This was the first output we got- it's a simple zero shot cloning attempt with that used a few reference audios
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>ranni_seneca_quote_xtts_w_rvc.mp3</p>
+                    <audio controls>
+                        <source src="audio/3-batched_ranni_XTTS_w_RVC/ranni_seneca_quote_xtts_w_rvc.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p><i>
+                            "The greatest obstacle to living is expectancy, which hangs upon tomorrow and loses today. You are
+                            arranging what lies in Fortune's control, and abandoning what lies in yours. What are you looking at? To
+                            what goal are you straining? The whole future lies in uncertainty; live immediately!"
+                    </i></p>
+                </td>
+                <td>
+                    <p>
+                        This is an example of where the TTS pipeline is right now. It pairs a this time trained TTS model with a
+                        trained S2S model that further improves upon voice accuracy and brings significant noise reduction. The end
+                        result is an astonishingly close sound given the difficulty of the data it had to work with.
+                    </p>
+                </td>
+            </tr>
+         </table>
 
 
 
