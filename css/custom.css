@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Outfit:wght@300;400;500&display=swap');
+
+:root {
+    --accent: #54e0ff;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, #0a0f1e 0%, #0d1b2a 100%);
+    min-height: 100vh;
+}
+
+.hero-name {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--accent);
+    letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+    color: rgba(220, 240, 255, 0.65);
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+.project-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(200, 235, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(84, 224, 255, 0.12);
+    border-color: rgba(84, 224, 255, 0.3);
+}
